@@ -1,36 +1,33 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Finance Manager - A NextJS Application
 
-## Getting Started
+This project is a web-based finance management application built with Next.js and Chart.js. It allows you to track your income and expenses, categorize transactions, and gain valuable insights into your financial activity.
 
-First, run the development server:
+## Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- **Transaction Management:** Add, edit, and delete income and expense transactions.
+- **Categorization:** Organize transactions with customizable categories.
+- **Monthly Overview:** View a comprehensive summary of your finances for the current month, including income, expenses, and net balance.
+- **Financial Analytics:** Generate insightful charts and graphs to visualize your spending habits and identify areas for improvement.
+
+# Local Setup
+
+Clone the repo:
+
+```
+git clone https://github.com/ritikprajapat21/finance-manager.git
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Install dependency:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+cd finance-manager
+npm install
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Run the application:
 
-## Learn More
+```
+npm run dev
+```
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+****NOTE:**** You have use the creadentials to use connect to backend and login
