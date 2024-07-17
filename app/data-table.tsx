@@ -61,7 +61,7 @@ function DataTable<TData, TValue>({
   });
 
   return (
-    <section>
+    <section className="w-11/12 lg:w-full">
       <div className="flex items-center justify-between py-4 gap-4">
         <Input
           placeholder="Filter tags..."

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Tabs, TabsList, TabsTrigger } from "../ui/tabs";
+import { Tabs, TabsList, TabsTrigger } from "./ui/tabs";
 
 const Tab: React.FC = () => {
   return (
