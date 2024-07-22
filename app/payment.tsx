@@ -1,6 +1,15 @@
 "use client";
+import { AlertDialog, AlertDialogTrigger } from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
-import { Checkbox } from "@/components/ui/checkbox";
+import {
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -9,14 +18,20 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { DialogTrigger } from "@radix-ui/react-dialog";
 import { ColumnDef } from "@tanstack/react-table";
+import { ArrowUpDown, MoreHorizontal, PencilIcon, Trash2 } from "lucide-react";
+import Link from "next/link";
 import {
-  ArrowUpDown,
-  EllipsisVertical,
-  MoreHorizontal,
-  PencilIcon,
-  Trash2,
-} from "lucide-react";
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
 
 export type Payment = {
   id: number;
@@ -77,35 +92,94 @@ export const columns: ColumnDef<Payment>[] = [
     cell: ({ row }) => {
       console.log(row.original);
       return (
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="ghost" className="h-8 w-8 p-0">
-              <span className="sr-only">Open menu</span>
-              <MoreHorizontal className="h-4 w-4" />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem
-              className="justify-between"
-              onClick={() => {
-                console.log(row.getValue("id"));
-              }}
-            >
-              <p>Edit</p>
-              <div>
-                <PencilIcon className="h-4 w-4" />
+        <AlertDialog>
+          <Dialog>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="ghost" className="h-8 w-8 p-0">
+                  <span className="sr-only">Open menu</span>
+                  <MoreHorizontal className="h-4 w-4" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end">
+                <DropdownMenuLabel>Actions</DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DialogTrigger asChild>
+                  <DropdownMenuItem
+                    className="justify-between cursor-pointer"
+                    onClick={() => {
+                      console.log(row.getValue("id"));
+                    }}
+                  >
+                    <div className="flex justify-between w-full cursor-pointer">
+                      <p>Edit</p>
+                      <div>
+                        <PencilIcon className="h-4 w-4" />
+                      </div>
+                    </div>
+                  </DropdownMenuItem>
+                </DialogTrigger>
+                <AlertDialogTrigger asChild>
+                  <DropdownMenuItem className="justify-between">
+                    <div className="flex justify-between w-full cursor-pointer">
+                      <p>Delete</p>
+                      <div>
+                        <Trash2 className="h-4 w-4" />
+                      </div>
+                    </div>
+                  </DropdownMenuItem>
+                </AlertDialogTrigger>
+              </DropdownMenuContent>
+            </DropdownMenu>
+            <DialogContent className="sm:max-w-[425px]">
+              <DialogHeader>
+                <DialogTitle>Edit transaction</DialogTitle>
+                <DialogDescription>
+                  Make changes to your transaction here. Click save when you're
+                  done.
+                </DialogDescription>
+              </DialogHeader>
+              <div className="grid gap-4 py-4">
+                <div className="grid grid-cols-4 items-center gap-4">
+                  <Label htmlFor="amount" className="text-right">
+                    Amount
+                  </Label>
+                  <Input
+                    id="Amount"
+                    defaultValue={row.original.amount}
+                    className="col-span-3"
+                  />
+                </div>
+                <div className="grid grid-cols-4 items-center gap-4">
+                  <Label htmlFor="tag" className="text-right">
+                    Tag
+                  </Label>
+                  <Input
+                    id="tag"
+                    defaultValue={row.original.tag}
+                    className="col-span-3"
+                  />
+                </div>
               </div>
-            </DropdownMenuItem>
-            <DropdownMenuItem className="justify-between">
-              <p>Delete</p>
-              <div>
-                <Trash2 className="h-4 w-4" />
-              </div>
-            </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
+              <DialogFooter>
+                <Button type="submit">Save changes</Button>
+              </DialogFooter>
+            </DialogContent>
+          </Dialog>
+          <AlertDialogContent>
+            <AlertDialogHeader>
+              <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+              <AlertDialogDescription>
+                This action cannot be undone. This will permanently delete your
+                account and remove your data from our servers.
+              </AlertDialogDescription>
+            </AlertDialogHeader>
+            <AlertDialogFooter>
+              <AlertDialogCancel>Cancel</AlertDialogCancel>
+              <AlertDialogAction>Continue</AlertDialogAction>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
       );
     },
   },
